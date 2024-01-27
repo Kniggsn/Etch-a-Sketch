@@ -1,0 +1,19 @@
+.row {
+    display: flex;
+    width: 960px;
+
+    justify-content: space-between;
+    padding: 0px;
+}
+
+.cell {
+    color:blue;
+    flex: 1;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.cell:hover {
+    background-color:darkslategray;
+}
