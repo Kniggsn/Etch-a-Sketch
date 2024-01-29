@@ -13,7 +13,7 @@ let numberOfRows = 16;
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
 clearBtn.addEventListener("click", () => createGrid());
-document.querySelectorAll(".right-buttons-container").forEach(element => element.addEventListener("click", changeSelectedColor));
+document.querySelectorAll(".right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
 
 createGrid();
 
