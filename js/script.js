@@ -1,6 +1,7 @@
-const mainContainer = document.querySelector(".main-container");
+const gridContainer = document.querySelector("#grid-container");
 const body = document.querySelector("body");
 const clearBtn = document.querySelector("#clear-btn");
+const slider = document.querySelector(".slider");
 const cells = [];
 
 let mouseState = 0;
@@ -13,12 +14,16 @@ let numberOfRows = 16;
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
 clearBtn.addEventListener("click", () => createGrid());
-document.querySelectorAll(".right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
+document.querySelectorAll("#right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
+
+setUpSlider();
 
 createGrid();
 
 function createGrid(){
     deleteGrid();
+    numberOfColumns = Math.round(slider.value*0.64); 
+    numberOfRows = Math.round(slider.value*0.64);
     for (let i=0; i<numberOfColumns; i++) {
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row");
@@ -34,7 +39,7 @@ function createGrid(){
             cell.addEventListener("mousedown", () => mouseDown(cell));
             cell.addEventListener("mouseover", () => mouseOver(cell));
             cell.draggable = false;
-        mainContainer.appendChild(rowContainer);
+        gridContainer.appendChild(rowContainer);
     }
 }
 }
@@ -79,4 +84,13 @@ function deleteGrid() {
             element.remove();
         });
     };
+}
+
+function setUpSlider() {
+    const output = document.getElementById("slider-output");
+    slider.value = 16/0.64;
+    output.innerHTML = Math.round(slider.value*0.64);
+    slider.oninput = function() {
+        output.innerHTML = Math.round(this.value*0.64);
+      } 
 }

@@ -12,23 +12,38 @@
         <h1>Etch-a-sketch</h1>
     </header>
     <main>
-        <div class="left-buttons-container">
-            <button id="clear-btn">Clear field</button>
-            <button>Button 2</button>
-            <button>Button 3</button>
+        <div id="grid-and-buttons-container">
+            <div id="grid-container"></div>
+            <div class="buttons">
+                <div id="right-buttons-container">
+                    <div class="colors">
+                        <div class="white color-div"></div>
+                        <div class="red color-div"></div>
+                        <div class="blue color-div"></div>
+                    </div>
+                    <div class="colors">
+                        <div class="yellow color-div"></div>
+                        <div class="green color-div"></div>
+                        <div class="purple color-div"></div>
+                    </div>
+                    <div class="colors">
+                        <div class="orange color-div"></div>
+                        <div class="brown color-div"></div>
+                        <div class="black color-div"></div>
+                    </div>
+                </div>
+                <div id="reset-container">
+                    <button id="clear-btn">Clear and change size</button>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                    <div>
+                        <p>Grid-Size: <span id="slider-output">16</span>x</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="main-container"></div>
-        <div class="right-buttons-container">
-            <div class="white color-div"></div>
-            <div class="red color-div"></div>
-            <div class="blue color-div"></div>
-            <div class="yellow color-div"></div>
-            <div class="green color-div"></div>
-            <div class="purple color-div"></div>
-            <div class="orange color-div"></div>
-            <div class="brown color-div"></div>
-            <div class="black color-div"></div>
-        </div>
+
     </main>
     <footer>
         <p>This is the footer.</p>

@@ -15,22 +15,51 @@ main {
     padding-bottom: 32px;
 }
 
-.main-container, main {
+#grid-container, main {
     width: 100%;
     background-color:#79c2d0;
 }
 
-main {
+#grid-and-buttons-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.main-container {
+#left-buttons-container {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#grid-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 600px;
+    width: 60%;
+}
+
+#right-buttons-container {
+    height: 550px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.colors {
+    display: flex;
+    height: 100%;
+    flex-direction: column; 
+    justify-content: space-around;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
 }
 
 .row {
@@ -47,8 +76,6 @@ main {
     border-color: black;
     background-color: white;
 }
-
-
 
 .cell:hover {
     background-color:darkslategray;
@@ -69,6 +96,7 @@ body {
     height: 36px;
     border-width: 1px;
     border-style: solid;
+    border-radius: 100%;
 }
 
 .white {
@@ -80,7 +108,8 @@ body {
     background-color: red;
 }
 
-.blue {background-color: blue;}
+.blue {
+    background-color: blue;}
 
 .yellow {
     background-color: yellow;
@@ -107,17 +136,31 @@ body {
     border-width: 3px;
 }
 
-.right-buttons-container {
-    height: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.clear-btn {
+    margin: 0, auto;
 }
 
-.left-buttons-container {
-    height: 300px;
+#reset-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+#clear-btn {
+    width: 100px; 
+}
+
+.slidecontainer {
+    width: 300px;
+}
+
+.slider {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    background: #d3d3d3;
+    opacity:0,7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
