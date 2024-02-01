@@ -37,7 +37,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 600px;
+    border: 2px solid black;
 }
 
 #right-buttons-container {
@@ -69,11 +70,8 @@ main {
 }
 
 .cell {
-    color:blue;
     flex: 1;
-    border-width: 0.1px;
-    border-style: solid;
-    border-color: black;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: white;
 }
 
@@ -94,14 +92,14 @@ body {
 .color-div {
     width: 36px;
     height: 36px;
-    border-width: 1px;
     border-style: solid;
+    border-color: black;
     border-radius: 100%;
+    border-width: 1px;
 }
 
 .white {
     background-color: white;
-    border-width: 1px;
 }
 
 .red {

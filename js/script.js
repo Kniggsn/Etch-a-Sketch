@@ -10,6 +10,9 @@ let selectedColorDiv = document.querySelector(".black");
 
 let numberOfColumns = 16;
 let numberOfRows = 16;
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
@@ -34,34 +37,18 @@ function createGrid(){
             const cell = document.createElement("div");
             cell.classList.add("cell");
             cell.classList.add("column" + j);
-            setBorderThickness(i, j, cell);
             rowContainer.appendChild(cell);
-            cell.addEventListener("mousedown", () => mouseDown(cell));
-            cell.addEventListener("mouseover", () => mouseOver(cell));
+            cell.addEventListener("mousedown", changeColor);
+            cell.addEventListener("mouseover", changeColor);
             cell.draggable = false;
         gridContainer.appendChild(rowContainer);
     }
 }
 }
 
-function setBorderThickness(i, j, cell) {
-    if(i === 0) {
-        cell.style.borderTopWidth = "3px";
-    }
-    if(j == 0) {
-        cell.style.borderLeftWidth = "3px";
-    }
-    if(i === numberOfColumns-1) {
-        cell.style.borderBottomWidth = "3px";
-    }
-    if(j == numberOfRows-1) {
-        cell.style.borderRightWidth = "3px";
-    }
-}
-
-function mouseDown(c) {
-    c.style.backgroundColor = selectedColor;
-    mouseState = 1;
+function changeColor(cell) {
+    if(cell.type === "mouseover" && !mouseDown) return;
+    cell.target.style.backgroundColor = selectedColor;
 }
 
 function mouseOver(c) {
