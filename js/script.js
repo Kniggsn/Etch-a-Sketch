@@ -2,6 +2,7 @@ const gridContainer = document.querySelector("#grid-container");
 const body = document.querySelector("body");
 const clearBtn = document.querySelector("#clear-btn");
 const slider = document.querySelector(".slider");
+const colorPicker = document.querySelector("#color-picker")
 const cells = [];
 
 let mouseState = 0;
@@ -11,18 +12,20 @@ let selectedColorDiv = document.querySelector(".black");
 let numberOfColumns = 16;
 let numberOfRows = 16;
 let mouseDown = false;
+
+setUpSlider();
+createGrid();
+
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
+
 
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
 clearBtn.addEventListener("click", () => createGrid());
-document.querySelectorAll("#right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
-
-setUpSlider();
-
-createGrid();
-
+colorPicker.addEventListener("input", changeSelectedColor, false);
+//document.querySelectorAll("#right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
+colorPicker.value = "#000000";
 function createGrid(){
     deleteGrid();
     numberOfColumns = Math.round(slider.value*0.64); 
@@ -31,7 +34,7 @@ function createGrid(){
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row");
         rowContainer.classList.add("row" + i);
-        rowContainer.style.height = String(600/numberOfRows) + "px";
+        rowContainer.style.height = String(450/numberOfRows) + "px";
         rowContainer.draggable = false;
         for (let j=0; j<numberOfColumns; j++) {
             const cell = document.createElement("div");
@@ -42,8 +45,8 @@ function createGrid(){
             cell.addEventListener("mouseover", changeColor);
             cell.draggable = false;
         gridContainer.appendChild(rowContainer);
+        }
     }
-}
 }
 
 function changeColor(cell) {
@@ -51,17 +54,8 @@ function changeColor(cell) {
     cell.target.style.backgroundColor = selectedColor;
 }
 
-function mouseOver(c) {
-    if (mouseState === 1) {
-        c.style.backgroundColor = selectedColor;
-    }
-}
-
-function changeSelectedColor(element) {
-    selectedColorDiv.style.borderWidth = "1px";
-    selectedColor = window.getComputedStyle(element.target).getPropertyValue("background-color");
-    element.target.style.borderWidth = "3px";
-    selectedColorDiv = element.target;
+function changeSelectedColor(event) {
+    selectedColor = event.target.value;
 }
 
 function deleteGrid() {

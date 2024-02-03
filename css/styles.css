@@ -1,3 +1,15 @@
+html {
+    background-color: #2a2438;
+    color: white;
+}
+
+body {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 8px;
+    height: 90%;
+}
+
 
 h1 {
     text-align: center;
@@ -5,19 +17,24 @@ h1 {
 }
 
 header {
-    background-color: #5585b5;
+    background-color: #352f44;
     margin: 0px;
     padding: 8px;
 }
 
+
+
 main {
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%; 
 }
+
+
 
 #grid-container, main {
     width: 100%;
-    background-color:#79c2d0;
+    background-color:#5c5470;
 }
 
 #grid-and-buttons-container {
@@ -26,46 +43,27 @@ main {
     align-items: center;
 }
 
-#left-buttons-container {
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
 
 #grid-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 600px;
+    width: 450px;
     border: 2px solid black;
 }
 
-#right-buttons-container {
-    height: 550px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-}
-
-.colors {
-    display: flex;
-    height: 100%;
-    flex-direction: column; 
-    justify-content: space-around;
-}
 
 .buttons {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 30%;
+    justify-content: space-around;
+    height: 450px;
 }
 
 .row {
     display: flex;
-    width: 600px;
+    width: 450px;
     justify-content: center;
 }
 
@@ -81,13 +79,11 @@ main {
 
 footer {
     text-align: center;
-    background-color: #5585b5;
-    padding: 32px;
+    background-color: #352f44;
+    padding: 16px;
+    height: 100%;
 }
 
-body {
-    margin: 0;
-}
 
 .color-div {
     width: 36px;
@@ -161,4 +157,18 @@ body {
     opacity:0,7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    margin: 0;
+}
+
+#color-picker {
+    color: black;
+    padding: 0px;
+    border: 0px;
+    border-radius: 10%;
+    height: 30px;
+    width: 50px;
+}
+
+#color-picker:hover {
+    cursor: pointer;
 }

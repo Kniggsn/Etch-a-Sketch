@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +8,34 @@
     <script src="js/script.js" defer></script>
     <title>Etch-a-Sketch</title>
 </head>
-<body draggable="false">
+
+<body>
     <header>
         <h1>Etch-a-sketch</h1>
     </header>
     <main>
         <div id="grid-and-buttons-container">
-            <div id="grid-container"></div>
             <div class="buttons">
-                <div id="right-buttons-container">
-                    <div class="colors">
-                        <div class="white color-div"></div>
-                        <div class="red color-div"></div>
-                        <div class="blue color-div"></div>
-                    </div>
-                    <div class="colors">
-                        <div class="yellow color-div"></div>
-                        <div class="green color-div"></div>
-                        <div class="purple color-div"></div>
-                    </div>
-                    <div class="colors">
-                        <div class="orange color-div"></div>
-                        <div class="brown color-div"></div>
-                        <div class="black color-div"></div>
-                    </div>
+                <div>
+                    <p>Choose your color:</p>
+                    <input type="color" id="color-picker" value="#000000" />
                 </div>
-                <div id="reset-container">
-                    <button id="clear-btn">Clear and change size</button>
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
-                    <div>
-                        <p>Grid-Size: <span id="slider-output">16</span>x</p>
-                    </div>
+                <button id="clear-btn">Clear and change size</button>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p style="margin: 0">Grid-Size: <span id="slider-output">16</span>x</p>
+                </div>
+                <div>
+
                 </div>
             </div>
-        </div>
-
+            <div id="grid-container"></div>
     </main>
     <footer>
         <p>This project is part of the "The Odin Project"-Curriculum.</p>
     </footer>
 
+
 </body>
+
 </html>
