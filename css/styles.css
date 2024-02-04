@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 html {
     background-color: #2a2438;
     color: white;
@@ -22,15 +26,11 @@ header {
     padding: 8px;
 }
 
-
-
 main {
     padding-top: 16px;
     padding-bottom: 16px;
     width: 100%; 
 }
-
-
 
 #grid-container, main {
     width: 100%;
@@ -39,10 +39,10 @@ main {
 
 #grid-and-buttons-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap-reverse;
 }
-
 
 #grid-container {
     display: flex;
@@ -50,15 +50,20 @@ main {
     align-items: center;
     width: 450px;
     border: 2px solid black;
+    box-shadow: 3px 3px 15px 3px black;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-
-.buttons {
+.buttons-container, .middle-buttons-container {
     display: flex;
     flex-direction: column;
     width: 30%;
     justify-content: space-around;
     height: 450px;
+    width: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .row {
@@ -69,7 +74,7 @@ main {
 
 .cell {
     flex: 1;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px none rgba(0, 0, 0, 0.1);
     background-color: white;
 }
 
@@ -84,69 +89,23 @@ footer {
     height: 100%;
 }
 
-
-.color-div {
-    width: 36px;
-    height: 36px;
+.left-side-buttons, .middle-buttons {
+    width: 200px; 
+    height: 30px;
     border-style: solid;
-    border-color: black;
-    border-radius: 100%;
+    color:white;
     border-width: 1px;
+    border-radius: 8px;
+    background-color:#352f44;
 }
 
-.white {
-    background-color: white;
-}
-
-.red {
-    background-color: red;
-}
-
-.blue {
-    background-color: blue;}
-
-.yellow {
-    background-color: yellow;
-}
-
-.green {
-    background-color: green;
-}
-
-.purple {
-    background-color: purple;
-}
-
-.orange {
-    background-color: orange;
-}
-
-.brown {
-    background-color: brown;
-}
-
-.black {
-    background-color: black;
-    border-width: 3px;
-}
-
-.clear-btn {
-    margin: 0, auto;
-}
-
-#reset-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#clear-btn {
-    width: 100px; 
+#color-btn {
+    background-color: rgb(0, 20, 46);
 }
 
 .slidecontainer {
-    width: 300px;
+    width: 200px;
+    
 }
 
 .slider {
@@ -158,6 +117,7 @@ footer {
     -webkit-transition: .2s;
     transition: opacity .2s;
     margin: 0;
+    background-color: rgb(0, 20, 46);
 }
 
 #color-picker {
@@ -165,10 +125,26 @@ footer {
     padding: 0px;
     border: 0px;
     border-radius: 10%;
-    height: 30px;
+    height: 50px;
     width: 50px;
+    appearance: none;
+    margin-bottom: 8px;
 }
 
 #color-picker:hover {
     cursor: pointer;
+}
+
+.grid-size-output {
+    text-align: center;
+}
+
+#color-picker-container {
+    width: 200px;
+    text-align: center;
+
+}
+
+#clear-btn:active {
+    background-color: #2a2438;
 }

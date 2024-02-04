@@ -1,9 +1,14 @@
 const gridContainer = document.querySelector("#grid-container");
 const body = document.querySelector("body");
 const clearBtn = document.querySelector("#clear-btn");
+const showGridBtn = document.querySelector("#show-grid-btn");
+const autoDrawBtn = document.querySelector("#auto-draw-btn");
 const slider = document.querySelector(".slider");
-const colorPicker = document.querySelector("#color-picker")
-const cells = [];
+const colorPicker = document.querySelector("#color-picker");
+const colorChangeButtons = document.querySelectorAll(".color-change-buttons");
+
+const activeButtonColor = "rgb(0, 20, 46)";
+const inactiveButtonColor = "#352f44";
 
 let mouseState = 0;
 let selectedColor = "black";
@@ -12,6 +17,9 @@ let selectedColorDiv = document.querySelector(".black");
 let numberOfColumns = 16;
 let numberOfRows = 16;
 let mouseDown = false;
+let mode = "defaultColorMode";
+let showGrid = false;
+let autoDraw = false;
 
 setUpSlider();
 createGrid();
@@ -23,9 +31,14 @@ document.body.onmouseup = () => (mouseDown = false);
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
 clearBtn.addEventListener("click", () => createGrid());
+showGridBtn.addEventListener("click", toggleGrid);
+autoDrawBtn.addEventListener("click", toggleAutoDraw);
+colorChangeButtons.forEach((button) => button.addEventListener("click", changeColorMode));
+colorChangeButtons.forEach((button) => button.addEventListener("click", changeButtonBackgroundColor));
 colorPicker.addEventListener("input", changeSelectedColor, false);
 //document.querySelectorAll("#right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
 colorPicker.value = "#000000";
+
 function createGrid(){
     deleteGrid();
     numberOfColumns = Math.round(slider.value*0.64); 
@@ -44,14 +57,26 @@ function createGrid(){
             cell.addEventListener("mousedown", changeColor);
             cell.addEventListener("mouseover", changeColor);
             cell.draggable = false;
+            if (showGrid) {
+                cell.style.borderStyle = "solid";
+            }
         gridContainer.appendChild(rowContainer);
         }
     }
 }
 
 function changeColor(cell) {
-    if(cell.type === "mouseover" && !mouseDown) return;
-    cell.target.style.backgroundColor = selectedColor;
+    if (!autoDraw && (cell.type === "mouseover" && !mouseDown)) {
+        return
+    }
+    if (mode === "defaultColorMode") {
+        cell.target.style.backgroundColor = selectedColor;
+    } else if (mode === "eraserMode") {
+        cell.target.style.backgroundColor = "white";
+    } else if (mode === "rainbowMode") {
+        cell.target.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
+    }
+
 }
 
 function changeSelectedColor(event) {
@@ -74,4 +99,47 @@ function setUpSlider() {
     slider.oninput = function() {
         output.innerHTML = Math.round(this.value*0.64);
       } 
+}
+
+function changeColorMode(event) {
+    if (event.target.id === "color-btn") {
+        mode = "defaultColorMode";
+    } else if (event.target.id === "eraser-btn") {
+        mode = "eraserMode";
+    } else if (event.target.id === "rainbow-btn") {
+        mode = "rainbowMode";
+    }
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+function changeButtonBackgroundColor(event) {
+    colorChangeButtons.forEach((button) => button.style.backgroundColor = inactiveButtonColor);
+    event.target.style.backgroundColor = activeButtonColor;
+}
+
+function toggleGrid() {
+    let cells = document.querySelectorAll(".cell");
+    if (showGrid) {
+        console.log("test");
+        cells.forEach((cell) => cell.style.borderStyle = "none");
+        showGrid = false;
+        showGridBtn.style.backgroundColor = inactiveButtonColor;
+    } else {
+        cells.forEach((cell) => cell.style.borderStyle = "solid");
+        showGrid = true;
+        showGridBtn.style.backgroundColor = activeButtonColor;
+    }
+}
+
+function toggleAutoDraw() {
+    if (autoDraw) {
+        autoDraw = false;
+        autoDrawBtn.style.backgroundColor = inactiveButtonColor;
+    } else {
+        autoDraw = true;
+        autoDrawBtn.style.backgroundColor = activeButtonColor;
+    }
 }

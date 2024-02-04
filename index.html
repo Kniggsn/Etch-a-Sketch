@@ -9,30 +9,34 @@
     <title>Etch-a-Sketch</title>
 </head>
 
-<body>
+<body ondragstart="return false;" ondrop="return false;">
     <header>
         <h1>Etch-a-sketch</h1>
     </header>
     <main>
         <div id="grid-and-buttons-container">
-            <div class="buttons">
-                <div>
-                    <p>Choose your color:</p>
+            <div class="buttons-container">
+                <div id="color-picker-container">
                     <input type="color" id="color-picker" value="#000000" />
+                    <button class="left-side-buttons color-change-buttons" id="color-btn">Selected Color-Mode</button>
                 </div>
-                <button id="clear-btn">Clear and change size</button>
+                <button class="left-side-buttons color-change-buttons" id="eraser-btn">Eraser</button>
+                <button class="left-side-buttons color-change-buttons" id="rainbow-btn">Rainbow-Mode</button>
                 <div class="slidecontainer">
+                    <button class="left-side-buttons" id="clear-btn">Clear and/or change size</button>
                     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <p style="margin: 0">Grid-Size: <span id="slider-output">16</span>x</p>
+                    <p class="grid-size-output", style="margin: 0">Grid-Size: <span id="slider-output">16</span>x</p>
                 </div>
-                <div>
-
-                </div>
+            </div>
+            <div class="middle-buttons-container">
+                <button class="middle-buttons" id="show-grid-btn">Show grid</button>
+                <button class="middle-buttons" id="auto-draw-btn">Auto-draw</button>
             </div>
             <div id="grid-container"></div>
     </main>
     <footer>
         <p>This project is part of the "The Odin Project"-Curriculum.</p>
+        <p>© by <a href="https://github.com/Kniggsn/Etch-a-Sketch" target="_blank">Kniggsn</a></p>
     </footer>
 
 
