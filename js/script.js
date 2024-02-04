@@ -10,6 +10,8 @@ const colorChangeButtons = document.querySelectorAll(".color-change-buttons");
 const activeButtonColor = "rgb(0, 20, 46)";
 const inactiveButtonColor = "#352f44";
 
+document.querySelector("#hidden-btn").addEventListener("click", (event) => event.target.style.display = "none");
+
 let mouseState = 0;
 let selectedColor = "black";
 let selectedColorDiv = document.querySelector(".black");
@@ -21,35 +23,36 @@ let mode = "defaultColorMode";
 let showGrid = false;
 let autoDraw = false;
 
-setUpSlider();
-createGrid();
-
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
-
 body.addEventListener("mouseup", () => mouseState = 0);
 body.addEventListener("mouseleave", () => mouseState = 0);
+
 clearBtn.addEventListener("click", () => createGrid());
 showGridBtn.addEventListener("click", toggleGrid);
 autoDrawBtn.addEventListener("click", toggleAutoDraw);
+
 colorChangeButtons.forEach((button) => button.addEventListener("click", changeColorMode));
 colorChangeButtons.forEach((button) => button.addEventListener("click", changeButtonBackgroundColor));
+
 colorPicker.addEventListener("input", changeSelectedColor, false);
-//document.querySelectorAll("#right-buttons-container > *").forEach(element => element.addEventListener("click", changeSelectedColor));
 colorPicker.value = "#000000";
 
-function createGrid(){
+setUpSlider();
+createGrid();
+
+function createGrid() {
     deleteGrid();
-    numberOfColumns = Math.round(slider.value*0.64); 
-    numberOfRows = Math.round(slider.value*0.64);
-    for (let i=0; i<numberOfColumns; i++) {
+    numberOfColumns = Math.round(slider.value * 0.64);
+    numberOfRows = Math.round(slider.value * 0.64);
+    for (let i = 0; i < numberOfColumns; i++) {
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row");
         rowContainer.classList.add("row" + i);
-        rowContainer.style.height = String(450/numberOfRows) + "px";
+        rowContainer.style.height = String(450 / numberOfRows) + "px";
         rowContainer.draggable = false;
-        for (let j=0; j<numberOfColumns; j++) {
+        for (let j = 0; j < numberOfColumns; j++) {
             const cell = document.createElement("div");
             cell.classList.add("cell");
             cell.classList.add("column" + j);
@@ -60,7 +63,7 @@ function createGrid(){
             if (showGrid) {
                 cell.style.borderStyle = "solid";
             }
-        gridContainer.appendChild(rowContainer);
+            gridContainer.appendChild(rowContainer);
         }
     }
 }
@@ -75,6 +78,21 @@ function changeColor(cell) {
         cell.target.style.backgroundColor = "white";
     } else if (mode === "rainbowMode") {
         cell.target.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
+    } else if (mode === "greyscaleMode") {
+        let rgb = window.getComputedStyle(cell.target).backgroundColor;
+        rgb = rgb.substring(4, rgb.length-1)
+                .replace(/ /g, '')
+                .split(',');
+        if(rgb[0] === rgb[1] && rgb[1] === rgb[2]) {
+            rgb[0] = rgb[0] - 10;
+            rgb[1] = rgb[1] - 10;
+            rgb[2] = rgb[2] - 10;
+        } else {
+            rgb[0] = 245;
+            rgb[1] = 245;
+            rgb[2] = 245;
+        }
+        cell.target.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
     }
 
 }
@@ -85,7 +103,7 @@ function changeSelectedColor(event) {
 
 function deleteGrid() {
     rows = document.querySelectorAll(".row");
-    if (rows[0]){
+    if (rows[0]) {
         rows.forEach(element => {
             element.remove();
         });
@@ -94,11 +112,11 @@ function deleteGrid() {
 
 function setUpSlider() {
     const output = document.getElementById("slider-output");
-    slider.value = 16/0.64;
-    output.innerHTML = Math.round(slider.value*0.64);
-    slider.oninput = function() {
-        output.innerHTML = Math.round(this.value*0.64);
-      } 
+    slider.value = 16 / 0.64;
+    output.innerHTML = Math.round(slider.value * 0.64);
+    slider.oninput = function () {
+        output.innerHTML = Math.round(this.value * 0.64);
+    }
 }
 
 function changeColorMode(event) {
@@ -108,12 +126,14 @@ function changeColorMode(event) {
         mode = "eraserMode";
     } else if (event.target.id === "rainbow-btn") {
         mode = "rainbowMode";
+    } else if (event.target.id === "greyscale-btn") {
+        mode = "greyscaleMode";
     }
 }
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  }
+}
 
 function changeButtonBackgroundColor(event) {
     colorChangeButtons.forEach((button) => button.style.backgroundColor = inactiveButtonColor);

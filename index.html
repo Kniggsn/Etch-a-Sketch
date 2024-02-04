@@ -22,15 +22,19 @@
                 </div>
                 <button class="left-side-buttons color-change-buttons" id="eraser-btn">Eraser</button>
                 <button class="left-side-buttons color-change-buttons" id="rainbow-btn">Rainbow-Mode</button>
-                <div class="slidecontainer">
-                    <button class="left-side-buttons" id="clear-btn">Clear and/or change size</button>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <p class="grid-size-output", style="margin: 0">Grid-Size: <span id="slider-output">16</span>x</p>
-                </div>
+                <button class="left-side-buttons color-change-buttons" id="greyscale-btn">Greyscale-Mode</button>
+                
             </div>
             <div class="middle-buttons-container">
+                <div class="slidecontainer">
+                    <button class="middle-buttons" id="clear-btn">Clear and/or change size</button>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p class="grid-size-output" , style="margin: 0">Grid-Size: <span id="slider-output">16</span>x</p>
+                </div>
+                <button class="middle-buttons" id="hidden-btn">Text</button>
                 <button class="middle-buttons" id="show-grid-btn">Show grid</button>
                 <button class="middle-buttons" id="auto-draw-btn">Auto-draw</button>
+
             </div>
             <div id="grid-container"></div>
     </main>
