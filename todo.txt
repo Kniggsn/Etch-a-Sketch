@@ -1,4 +1,3 @@
 
 Bugs
-- Die Randfelder sind nicht quadratisch, fällt vor allem auf bei hohen Felderanzahlen
 - Der hover-Effekt wird entfernt, sobald man ein Feld einfärbt

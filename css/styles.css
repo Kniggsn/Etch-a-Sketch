@@ -14,7 +14,6 @@ body {
     height: 90%;
 }
 
-
 h1 {
     text-align: center;
     margin: 10px;
@@ -29,11 +28,6 @@ header {
 main {
     padding-top: 16px;
     padding-bottom: 16px;
-    width: 100%; 
-}
-
-#grid-container, main {
-    width: 100%;
     background-color:#5c5470;
 }
 
@@ -55,7 +49,7 @@ main {
     margin-right: 20px;
 }
 
-.buttons-container, .middle-buttons-container {
+.left-buttons-container, .middle-buttons-container {
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -78,10 +72,6 @@ main {
     background-color: white;
 }
 
-.cell:hover {
-    background-color:darkslategray;
-}
-
 footer {
     text-align: center;
     background-color: #352f44;
@@ -97,6 +87,7 @@ footer {
     border-width: 1px;
     border-radius: 8px;
     background-color:#352f44;
+    cursor: pointer;
 }
 
 #color-btn {
@@ -132,10 +123,6 @@ footer {
     margin-bottom: 8px;
 }
 
-#color-picker:hover {
-    cursor: pointer;
-}
-
 .grid-size-output {
     text-align: center;
 }
@@ -149,4 +136,20 @@ footer {
 
 #clear-btn:active {
     background-color: #2a2438;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: lightgrey;
+}
+
+.cell:hover {
+    background-color:darkslategray;
+}
+
+#color-picker:hover {
+    cursor: pointer;
 }
