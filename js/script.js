@@ -15,8 +15,8 @@ let mouseState = 0;
 let selectedColor = "black";
 
 
-let numberOfColumns = 16;
-let numberOfRows = 16;
+let numberOfColumns;
+let numberOfRows;
 let mouseDown = false;
 let mode = "defaultColorMode";
 let showGrid = false;
@@ -38,8 +38,8 @@ colorChangeButtons.forEach((button) => button.addEventListener("click", changeBu
 colorPicker.addEventListener("input", changeSelectedColor, false);
 colorPicker.value = "#000000";
 
-createGrid();
 setUpSlider();
+createGrid();
 
 function createGrid() {
     deleteGrid();
